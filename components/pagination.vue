@@ -31,18 +31,21 @@ const page = defineModel("page");
 const totalPages = defineModel("totalPages");
 const emit = defineEmits(["change"]);
 
+// Paginate to Next page
 const nextPage = () => {
   if (page.value < totalPages.value) {
     page.value++;
   }
 };
 
+// Paginate to Previous page
 const prevPage = () => {
   if (page.value > 1) {
     page.value--;
   }
 };
 
+//Emit change when next/prev has been clicked
 watch(page, (newPage) => {
   if (newPage) {
     emit("change", newPage);

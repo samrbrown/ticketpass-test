@@ -37,6 +37,7 @@
 <script setup>
 import dayjs from "#build/dayjs.imports.mjs";
 
+// Get eventId and eventName
 const {
   params: { eventId, eventName },
 } = useRoute();
@@ -44,6 +45,7 @@ const {
 const event = ref();
 const eventImage = ref("");
 
+// Fetch single event - based off eventId in the URL.
 const fetchEvent = async () => {
   try {
     const response = await fetch("/api/events-data.json");
@@ -55,6 +57,7 @@ const fetchEvent = async () => {
   }
 };
 
+// Split and Format date/time to be more palatable.
 const formatEventDate = (date) => {
   const eventDate = dayjs(date).format("ddd DD, MMM YYYY");
   const eventTime = dayjs(date).format("HH:mm");
@@ -65,6 +68,7 @@ const formatEventDate = (date) => {
   };
 };
 
+// Nuxt was being a pain with images, so had to import it this way.
 watchEffect(async () => {
   if (eventId) {
     try {
@@ -76,6 +80,7 @@ watchEffect(async () => {
   }
 });
 
+// Get Event
 onMounted(async () => {
   await fetchEvent();
 });

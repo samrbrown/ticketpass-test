@@ -8,6 +8,10 @@
 </template>
 
 <script setup>
+definePageMeta({
+  title: "Ticketpass - Events",
+  description: "Here you can find the current list of upcoming events.",
+});
 
 const page = ref(1);
 const limit = ref(6);
@@ -15,6 +19,7 @@ const totalPages = ref(1);
 const events = ref([]);
 const allEvents = ref([]);
 
+// Fetch All Events from the API
 const fetchEvents = async () => {
   try {
     const response = await fetch("/api/events-data.json");
@@ -27,6 +32,7 @@ const fetchEvents = async () => {
   }
 };
 
+// Update shown events based on pagination
 const updateEvents = () => {
   const startIndex = (page.value - 1) * limit.value;
   const endIndex = page.value * limit.value;
@@ -35,9 +41,13 @@ const updateEvents = () => {
 
 watch(page, fetchEvents);
 
+// For pagination - waits for pagination component to emit.
 const changePage = (newPage) => {
   page.value = newPage;
 };
 
-fetchEvents();
+onMounted(async () => {
+  await fetchEvents();
+})
+
 </script>

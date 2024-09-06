@@ -48,10 +48,6 @@
             </template>
           </UVerticalNavigation>
         </div>
-
-        <template #footer>
-          <Placeholder class="h-8" />
-        </template>
       </UCard>
     </USlideover>
   </div>

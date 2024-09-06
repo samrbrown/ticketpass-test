@@ -46,6 +46,7 @@ const props = defineProps({
     events: Array,
 })
 
+// Styling config for Card Component
 const cardUi = {
   base: "overflow-hidden cutout relative",
   ring: "",
@@ -54,6 +55,7 @@ const cardUi = {
   header: { padding: "" },
 };
 
+// Split/Format Date + Time
 const formatEventDate = (start) => {
   const startDate = dayjs(start).format("ddd DD, MMM YYYY");
   const startTime = dayjs(start).format("HH:mm");
@@ -64,6 +66,7 @@ const formatEventDate = (start) => {
   };
 };
 
+// When card is clicked on, take user to that event page.
 const navigateToEvent = (event) => {
   const eventId = event.id;
   const eventName = event.title;
